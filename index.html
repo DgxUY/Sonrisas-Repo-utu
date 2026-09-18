@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es-UY">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sonrisa Uruguaya — Clínica dental en Montevideo</title>
+<style>
+  :root{
+    --bg:#fafafa;
+    --surface:#ffffff;
+    --tint:#f1f7f6;
+    --ink:#1c2428;
+    --muted:#5f6e73;
+    --line:#e3e8e8;
+    --accent:#0f766e;
+    --accent-ink:#0b5450;
+    --accent-soft:#dcebe9;
+    --radius:14px;
+    --shadow:0 12px 32px rgba(15,118,110,.08);
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#101414;
+      --surface:#171d1e;
+      --tint:#1b2424;
+      --ink:#eef4f3;
+      --muted:#9db0b2;
+      --line:#263233;
+      --accent:#2dd4bf;
+      --accent-ink:#99f6e4;
+      --accent-soft:#14302d;
+      --shadow:0 12px 32px rgba(0,0,0,.35);
+      color-scheme:dark;
+    }
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.6;
+  }
+  /* Rule: buttons are pill, cards are 14px */
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  /* Header */
+  .top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+  .top-inner{max-width:1080px;margin:0 auto;padding:0 24px;height:68px;display:flex;align-items:center;gap:12px}
+  .mark{width:34px;height:34px;border-radius:10px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:17px}
+  .brand{line-height:1.2}
+  .brand b{display:block;font-size:15px;letter-spacing:-.01em}
+  .brand span{font-size:12px;color:var(--muted)}
+  nav{margin-left:auto;display:flex;gap:20px;font-size:14px}
+  nav a{color:var(--muted);text-decoration:none}
+  nav a:hover{color:var(--accent-ink)}
+  .btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;
+    padding:10px 20px;border-radius:999px;font-size:14px;font-weight:600;border:0;cursor:pointer;
+    transition:transform .25s cubic-bezier(.16,1,.3,1),opacity .25s}
+  .btn:hover{opacity:.92}
+  .btn:active{transform:translateY(1px)}
+  .btn.ghost{background:transparent;color:var(--accent-ink);border:1px solid var(--line)}
+  .top .btn{margin-left:8px;white-space:nowrap}
+  /* Hero: split, left aligned */
+  .hero{max-width:1080px;margin:0 auto;padding:56px 24px 8px;display:grid;
+    grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;min-height:0}
+  .eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.18em;color:var(--muted);margin:0 0 12px}
+  .hero h1{margin:0 0 12px;font-size:clamp(2rem,4.2vw,2.9rem);line-height:1.08;letter-spacing:-.025em}
+  .hero h1 em{font-style:italic}
+  .hero p{margin:0 0 22px;color:var(--muted);font-size:16px;max-width:44ch}
+  .hero-cta{display:flex;gap:10px;flex-wrap:wrap}
+  figure.shot{margin:0;background:var(--tint);border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden}
+  figure.shot img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+  figcaption{font-size:12px;color:var(--muted);margin-top:8px}
+  /* Services: numbered hairline list, not cards */
+  main{max-width:1080px;margin:0 auto;padding:8px 24px 56px}
+  section.block{padding:40px 0 8px}
+  section.block h2{margin:0 0 6px;font-size:22px;letter-spacing:-.02em}
+  section.block > p{margin:0 0 18px;color:var(--muted);font-size:15px;max-width:62ch}
+  ol.services{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+  ol.services li{display:grid;grid-template-columns:56px 1fr auto;gap:16px;align-items:baseline;
+    padding:16px 4px;border-bottom:1px solid var(--line)}
+  ol.services .n{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+  ol.services h3{margin:0;font-size:16px;letter-spacing:-.01em}
+  ol.services p{margin:2px 0 0;font-size:14px;color:var(--muted)}
+  ol.services .tag{font-size:12.5px;color:var(--accent-ink);background:var(--accent-soft);
+    border-radius:999px;padding:4px 12px;white-space:nowrap}
+  /* Schedule: two columns */
+  .sched{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+  .hours{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:6px 20px}
+  .hours div{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+  .hours div:last-child{border-bottom:0}
+  .hours dt,.hours dd{margin:0}
+  .hours dd{font-variant-numeric:tabular-nums}
+  .guard{background:var(--tint);border:1px solid var(--line);border-radius:var(--radius);padding:20px;font-size:14.5px}
+  .guard strong{color:var(--accent-ink)}
+  .guard p{margin:0 0 10px}
+  .guard p:last-child{margin:0}
+  footer{border-top:1px solid var(--line);padding:24px;color:var(--muted);font-size:13px}
+  footer .wrap{display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between}
+  /* Sonri, fixed right */
+  .sonri-launch{position:fixed;right:22px;bottom:22px;z-index:60;width:58px;height:58px;border-radius:50%;
+    background:var(--accent);color:#fff;border:0;font-size:22px;font-weight:700;cursor:pointer;
+    box-shadow:0 12px 30px rgba(0,0,0,.25);transition:transform .25s cubic-bezier(.16,1,.3,1)}
+  .sonri-launch:hover{opacity:.92}
+  .sonri-launch:active{transform:scale(.98)}
+  #sonriFrame{position:fixed;right:22px;bottom:92px;z-index:60;width:min(360px,calc(100vw - 32px));
+    height:min(480px,calc(100vh - 180px));background:var(--surface);border:1px solid var(--line);
+    border-radius:var(--radius);box-shadow:0 20px 60px rgba(0,0,0,.22)}
+  #sonriFrame.hidden{display:none}
+  @media (max-width:860px){
+    nav{display:none}
+    .hero{grid-template-columns:1fr;padding-top:36px;gap:28px}
+    .sched{grid-template-columns:1fr}
+    ol.services li{grid-template-columns:40px 1fr}
+    ol.services .tag{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="top-inner">
+    <div class="mark">S</div>
+    <div class="brand"><b>Sonrisa Uruguaya</b><span>Clínica dental · Montevideo</span></div>
+    <nav><a href="#servicios">Servicios</a><a href="#horario">Horarios</a><a href="#urgencias">Urgencias</a></nav>
+    <button class="btn" onclick="toggleSonri(true)">Reservar cita</button>
+  </div>
+</div>
+
+<div class="hero">
+  <div>
+    <p class="eyebrow">Montevideo · Odontología</p>
+    <h1>Sonrisas sanas <em>en Montevideo</em></h1>
+    <p>Clínica dental: limpieza, blanqueamiento, ortodoncia y urgencias todos los días.</p>
+    <div class="hero-cta">
+      <button class="btn" onclick="toggleSonri(true)">Reservar cita</button>
+      <a class="btn ghost" href="#servicios">Ver servicios</a>
+    </div>
+  </div>
+  <div>
+    <figure class="shot">
+      <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1200&q=80" alt="Consultorio dental moderno" loading="lazy">
+    </figure>
+    <figcaption>Lun–Vie 9:00–18:00 · Sáb 9:00–13:00</figcaption>
+  </div>
+</div>
+
+<main>
+  <section class="block" id="servicios">
+    <h2>Servicios</h2>
+    <p>Cuatro tratamientos esenciales, con urgencias todos los días por número de guardia.</p>
+    <ol class="services">
+      <li><span class="n">01</span><div><h3>Limpieza dental</h3><p>Higiene profesional y prevención para dientes y encías sanos.</p></div><span class="tag">Prevención</span></li>
+      <li><span class="n">02</span><div><h3>Blanqueamiento</h3><p>Mejora del color dental con evaluación previa en consulta.</p></div><span class="tag">Estética</span></li>
+      <li><span class="n">03</span><div><h3>Ortodoncia</h3><p>Corrección de la alineación dental y la mordida.</p></div><span class="tag">Tratamiento</span></li>
+      <li><span class="n">04</span><div><h3>Atención de urgencias</h3><p>Dolor, golpes, sangrado o hinchazón. Mayores de 12 años.</p></div><span class="tag">Guardia</span></li>
+    </ol>
+  </section>
+
+  <section class="block" id="horario">
+    <h2>Horarios</h2>
+    <p>Atención de lunes a sábado. Las urgencias van por guardia, todos los días.</p>
+    <div class="sched">
+      <dl class="hours">
+        <div><dt>Lunes a viernes</dt><dd>9:00 – 18:00</dd></div>
+        <div><dt>Sábados</dt><dd>9:00 – 13:00</dd></div>
+        <div><dt>Domingos</dt><dd>Solo urgencias</dd></div>
+      </dl>
+      <div class="guard" id="urgencias">
+        <p><strong>Urgencias, todos los días.</strong> Incluso fuera de horario, llamando al número de guardia.</p>
+        <p>Menores de 12 años: se derivan al Hospital Pediátrico más cercano.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Sonrisa Uruguaya · Montevideo</span>
+    <span>Lun–Vie 9–18 · Sáb 9–13 · Demo académica</span>
+  </div>
+</footer>
+
+<button class="sonri-launch" onclick="toggleSonri()" title="Hablar con Sonri">S</button>
+<script>
+function toggleSonri(force){
+  var f=document.getElementById('sonriFrame');
+  if(typeof force==='boolean'){f.classList.toggle('hidden',!force);}
+  else{f.classList.toggle('hidden');}
+}
+</script>
+
+<!-- ================================================== -->
+<!-- PEGAR ACÁ EL SCRIPT DEL CHATBOT -->
+<!-- ================================================== -->
+<iframe
+    id="sonriFrame"
+    class="hidden"
+    src="https://www.chatbase.co/chatbot-iframe/pqTNK2kdq0-tnVZXpMOHF"
+    width="100%"
+    style="border:0"
+    frameborder="0"
+    allow="microphone"
+></iframe>
+
+</body>
+</html>
